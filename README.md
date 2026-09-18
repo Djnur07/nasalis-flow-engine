@@ -135,5 +135,5 @@ their respective token holders and the Nasalis Flow project.
 
 ## Links
 
-- Website: [nasalis-flow.vercel.app](https://nasalis-flow.vercel.app)
+- Website: [nasalis-flow.vercel.app](https://nasalisflow.xyz/)
 - Live generative demo: available on the website's Traits page
