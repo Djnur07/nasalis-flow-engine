@@ -6,7 +6,7 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](package.json)
 [![Supply](https://img.shields.io/badge/supply-5%2C555-orange.svg)](#the-collection)
 
-[Website](https://nasalisflow.xyz/) · [X / Twitter](#)
+[Website](https://nasalisflow.xyz/) · [X / Twitter](https://x.com/NasalisFlow)
 
 <p align="center">
   <img src="examples/teal.jpg" width="32%" />
