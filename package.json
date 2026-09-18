@@ -1,0 +1,32 @@
+{
+  "name": "nasalis-flow",
+  "version": "1.0.0",
+  "description": "Generative art engine for Nasalis Flow — a 5,555-piece flow-field line-art collection inspired by the proboscis monkey (bekantan).",
+  "main": "generate_all.js",
+  "scripts": {
+    "generate": "node src/generate_all.js ./output 5555 1600",
+    "metadata": "node src/build_metadata.js ./output 5555",
+    "csv": "node src/build_csv.js ./output"
+  },
+  "keywords": [
+    "generative-art",
+    "nft",
+    "flow-field",
+    "canvas",
+    "proboscis-monkey",
+    "bekantan"
+  ],
+  "author": "Nasalis Flow",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<your-username>/nasalis-flow.git"
+  },
+  "homepage": "https://nasalis-flow.vercel.app",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "canvas": "^3.2.3"
+  }
+}
