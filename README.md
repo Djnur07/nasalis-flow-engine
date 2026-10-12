@@ -40,7 +40,6 @@ and verify that a given token's artwork and traits match its hash.
 | **Supply** | 5,555 |
 | **Resolution** | 1600×1600px |
 | **Traits** | Nose Class, Palette, Flow Style, Density, Background, Guide Line |
-| **Rarity** | Computed directly from trait rarity across the full supply — see [`docs/ALGORITHM.md`](docs/ALGORITHM.md#6-metadata--rarity) |
 | **Technique** | Flow-field particle simulation over a silhouette mask, rendered with [`node-canvas`](https://github.com/Automattic/node-canvas) |
 
 ## Quick start
