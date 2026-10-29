@@ -118,8 +118,7 @@ nasalis-flow/
 7. **Metadata & rarity** — traits are independently re-derived from the hash (never hand-written) and ranked by rarity across the full supply.
 
 For the full technical write-up — the exact math behind the flow field, how
-rarity scoring works, and why the trait order matters — see
-[`docs/ALGORITHM.md`](docs/ALGORITHM.md).
+rarity scoring works, and why the trait order matters — 
 
 ## License
 
