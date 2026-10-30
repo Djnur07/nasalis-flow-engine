@@ -4,7 +4,7 @@ This is the complete Node.js pipeline used to generate all 5,555 images and
 their metadata for the **Nasalis Flow** collection: generative flow-line
 portraits of the proboscis monkey (*Nasalis larvatus*).
 
-No AI image generator is involved anywhere in this pipeline. Every pixel is
+Every pixel is
 drawn by procedural code using [`node-canvas`](https://github.com/Automattic/node-canvas),
 a server-side implementation of the HTML5 Canvas 2D API.
 
