@@ -18,7 +18,7 @@
 
 ## What this is
 
-the 5,555 images is produced by a deterministic procedural
+the 5,555 Nasalis flow images is produced by a deterministic procedural
 algorithm: a single SHA-256 hash seeds a pseudo-random number generator,
 which drives a **flow-field particle simulation** that "grows" thousands of
 individual line strokes across a hidden silhouette mask of the animal.
