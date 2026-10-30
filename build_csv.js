@@ -6,10 +6,10 @@
 // that script computes.
 //
 // Usage:
-//   node build_csv.js <output_dir> <total_supply>
+//   node src/build_csv.js <output_dir> <total_supply>
 //
 // Example:
-//   node build_csv.js ./output 5555
+//   node src/build_csv.js ./output 5555
 //
 // Produces:
 //   <output_dir>/metadata-file-upload.csv
