@@ -18,9 +18,7 @@
 
 ## What this is
 
-Nasalis Flow is not made with an AI image generator. There is no diffusion
-model, no neural network, and no text prompt anywhere in this pipeline.
-Every one of the 5,555 images is produced by a deterministic procedural
+5,555 Nasalis images is produced by a deterministic procedural
 algorithm: a single SHA-256 hash seeds a pseudo-random number generator,
 which drives a **flow-field particle simulation** that "grows" thousands of
 individual line strokes across a hidden silhouette mask of the animal.
