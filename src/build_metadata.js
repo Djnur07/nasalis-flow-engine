@@ -73,7 +73,7 @@ function buildFeatures() {
 }
 
 const DESC_EN = ("Nasalis Flow is a collection of " + TOTAL.toLocaleString("en-US") + " generative portraits of the proboscis monkey " +
-  "(Nasalis larvatus), a primate endemic to Borneo whose survival is increasingly threatened " +
+  "(Nasalis larvatus), a primate endemic to Asia whose survival is increasingly threatened " +
   "by the loss of mangrove forest. Each piece is built not from flat color fields but from " +
   "thousands of flowing lines that follow a noise field while tracing the contours of its form. " +
   "The proboscis monkey's nose, a natural marker of dominance in males, becomes the collection's " +
