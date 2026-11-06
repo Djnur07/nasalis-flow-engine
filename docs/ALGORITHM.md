@@ -15,7 +15,6 @@ a server-side implementation of the HTML5 Canvas 2D API.
 | `generate.js` | Draws the PNG images and writes a draft (English) metadata file per token. |
 | `build_metadata.js` | Re-derives every trait directly from each token's hash, and computes the final rarity rank/score across the whole collection. |
 | `build_csv.js` | Converts the final metadata into a single CSV file formatted for OpenSea Studio's bulk upload (tokenID, name, description, file_name, hash, rank, and one column per trait, including a `Tier` category derived from rarity). |
-| `generate_all.js` | Orchestrator — runs `generate.js` in batches for the full supply, then runs `build_metadata.js` and `build_csv.js` once at the end. |
 | `package.json` | The only dependency is `canvas` (node-canvas). |
 
 ## Requirements
@@ -30,19 +29,22 @@ platforms.)
 
 ## Usage
 
-**Generate everything at once** (this is what was used to build the real collection):
+**Generate everything** (this is what was used to build the real collection):
 
 ```bash
-node src/generate_all.js ./output 5555 1600 480
+RUN_SALT=20c35e05aecdc47e node src/generate.js ./output 1 5555 1600
+node src/build_metadata.js ./output 5555
+node src/build_csv.js ./output
 ```
-Arguments: output folder, total supply, resolution in pixels, images per batch.
+`generate.js` takes: output folder, first token ID, last token ID, resolution in pixels.
+`build_metadata.js` takes: output folder, total supply. `build_csv.js` takes: output folder.
+Run `generate.js` once per batch if you prefer (for example `1 480`, then `481 960`).
 
-**Or generate a specific range manually:**
+**Or generate a specific range:**
 
 ```bash
-node src/generate.js ./output 1 100 1600
+RUN_SALT=20c35e05aecdc47e node src/generate.js ./output 1 100 1600
 ```
-Arguments: output folder, first token ID, last token ID, resolution in pixels.
 
 **Then rebuild metadata for the whole collection:**
 
