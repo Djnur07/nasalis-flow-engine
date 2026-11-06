@@ -55,15 +55,19 @@ Render a small test batch (tokens 1–10, 800px, fast):
 node src/generate.js ./output 1 10 800
 ```
 
-Render the entire collection exactly as it was originally produced:
+Render the entire collection exactly as it was originally produced
+(the salt below is the one used for the real collection):
 
 ```bash
-node src/generate_all.js ./output 5555 1600 480
+RUN_SALT=20c35e05aecdc47e node src/generate.js ./output 1 5555 1600
+node src/build_metadata.js ./output 5555
+node src/build_csv.js ./output
 ```
 
-This runs `generate.js` in batches, then automatically rebuilds metadata
-(`build_metadata.js`) and the OpenSea upload CSV (`build_csv.js`) once every
-image exists on disk.
+`generate.js` renders the images, `build_metadata.js` re-derives the traits and
+rarity from the hashes, and `build_csv.js` builds the OpenSea upload CSV.
+To render in smaller batches, run `generate.js` several times with different
+start and end token IDs (for example `1 480`, then `481 960`, and so on).
 
 Output layout:
 
@@ -99,9 +103,8 @@ nasalis-flow/
 ├── src/
 │   ├── generate.js          # Core renderer: hash → traits → silhouette → flow field → PNG
 │   ├── build_metadata.js    # Re-derives traits from hashes, computes rarity
-│   ├── build_csv.js         # Builds the OpenSea Studio bulk-upload CSV
-│   └── generate_all.js      # Orchestrates the full 1→5,555 pipeline
-├── tools/                   # PNG → JPG conversion for the OpenSea drop (Python)
+│   └── build_csv.js         # Builds the OpenSea Studio bulk-upload CSV
+├── convert-to-jpg/          # PNG → JPG conversion for the OpenSea drop (Python)
 │   ├── convert_to_jpg.py    # Converts the PNG masters to JPG (q98, 4:4:4)
 │   ├── verify_jpg.py        # Compares every JPG with its PNG, file by file
 │   ├── metadata_to_jpg.py   # Points the JSON / CSV at the .jpg files
@@ -132,10 +135,10 @@ rarity scoring works, and why the trait order matters — see
 OpenSea Studio limits one drop to 10 GB. The 5,555 PNG masters total about 17.6 GB, so the drop uses JPG copies (about 9.1 GB). **Nothing is redrawn**: each JPG is converted from its own PNG at the same 1600×1600px size, with JPG quality 98 and full colour (4:4:4, no chroma subsampling). The PNG masters are never modified.
 
 ```bash
-pip install -r tools/requirements.txt
-python3 tools/convert_to_jpg.py ./output/images ./output/images-jpg
-python3 tools/verify_jpg.py ./output/images ./output/images-jpg
-python3 tools/metadata_to_jpg.py ./output/metadata ./output/metadata-jpg
+pip install -r convert-to-jpg/requirements.txt
+python3 convert-to-jpg/convert_to_jpg.py ./output/images ./output/images-jpg
+python3 convert-to-jpg/verify_jpg.py ./output/images ./output/images-jpg
+python3 convert-to-jpg/metadata_to_jpg.py ./output/metadata ./output/metadata-jpg
 ```
 
 The conversion can be stopped and resumed. In the full run, the average difference per pixel was under 1 out of 255 on every token (largest single-pixel difference 16), with PSNR of 46 dB or higher.
