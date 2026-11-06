@@ -101,6 +101,11 @@ nasalis-flow/
 │   ├── build_metadata.js    # Re-derives traits from hashes, computes rarity
 │   ├── build_csv.js         # Builds the OpenSea Studio bulk-upload CSV
 │   └── generate_all.js      # Orchestrates the full 1→5,555 pipeline
+├── tools/                   # PNG → JPG conversion for the OpenSea drop (Python)
+│   ├── convert_to_jpg.py    # Converts the PNG masters to JPG (q98, 4:4:4)
+│   ├── verify_jpg.py        # Compares every JPG with its PNG, file by file
+│   ├── metadata_to_jpg.py   # Points the JSON / CSV at the .jpg files
+│   └── requirements.txt
 ├── docs/
 │   └── ALGORITHM.md         # Full technical write-up of the algorithm
 ├── examples/                # A few sample renders (used in this README)
@@ -121,6 +126,19 @@ nasalis-flow/
 For the full technical write-up — the exact math behind the flow field, how
 rarity scoring works, and why the trait order matters — see
 [`docs/ALGORITHM.md`](docs/ALGORITHM.md).
+
+## Converting for OpenSea (PNG → JPG)
+
+OpenSea Studio limits one drop to 10 GB. The 5,555 PNG masters total about 17.6 GB, so the drop uses JPG copies (about 9.1 GB). **Nothing is redrawn**: each JPG is converted from its own PNG at the same 1600×1600px size, with JPG quality 98 and full colour (4:4:4, no chroma subsampling). The PNG masters are never modified.
+
+```bash
+pip install -r tools/requirements.txt
+python3 tools/convert_to_jpg.py ./output/images ./output/images-jpg
+python3 tools/verify_jpg.py ./output/images ./output/images-jpg
+python3 tools/metadata_to_jpg.py ./output/metadata ./output/metadata-jpg
+```
+
+The conversion can be stopped and resumed. In the full run, the average difference per pixel was under 1 out of 255 on every token (largest single-pixel difference 16), with PSNR of 46 dB or higher.
 
 ## License
 
