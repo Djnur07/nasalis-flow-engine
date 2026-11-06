@@ -2,9 +2,9 @@
   "name": "nasalis-flow",
   "version": "1.0.0",
   "description": "Generative art engine for Nasalis Flow — a 5,555-piece flow-field line-art collection inspired by the proboscis monkey.",
-  "main": "src/generate_all.js",
+  "main": "src/generate.js",
   "scripts": {
-    "generate": "node src/generate_all.js ./output 5555 1600",
+    "generate": "RUN_SALT=20c35e05aecdc47e node src/generate.js ./output 1 5555 1600",
     "metadata": "node src/build_metadata.js ./output 5555",
     "csv": "node src/build_csv.js ./output"
   },
